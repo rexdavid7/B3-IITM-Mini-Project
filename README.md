@@ -1,84 +1,356 @@
 # Agentic RFP Evaluation and Supplier Ranking
 
-Classroom mini-project. It includes a Streamlit procurement dashboard, configurable SQLite criteria, deterministic scoring and ranking, PDF extraction, Gemini proposal evaluation, response validation, batch orchestration, persistence, and tests.
+An IIT Madras / IIT Pravartak classroom mini-project demonstrating an agentic workflow for evaluating multiple supplier proposals against configurable procurement criteria.
 
-## Local setup
+The application combines PDF extraction, Gemini-powered proposal assessment, structured response validation, deterministic scoring, peer benchmarking, PPI-based ranking, SQLite persistence, and an interactive Streamlit dashboard.
+
+## Live Application
+
+- **Application:** Streamlit deployment
+- **Source code:** [GitHub – B3-IITM-Mini-Project](https://github.com/rexdavid7/B3-IITM-Mini-Project)
+- **LLM provider:** Google Gemini (Google Gen AI SDK)
+- **Frontend:** Streamlit
+- **Database:** SQLite
+
+## Features
+
+- **Configurable evaluation criteria:** Five weighted procurement criteria stored in SQLite.
+- **Multiple PDF uploads:** Evaluate multiple supplier proposals in one batch.
+- **AI-powered assessment:** Gemini evaluates each proposal against the active criteria.
+- **Structured response validation:** Validates model responses, normalizes results, and identifies missing or invalid assessments.
+- **Deterministic scoring:** Calculates weighted scores, criterion benchmarks, performance gaps, relative performance, and PPI.
+- **Supplier ranking:** Ranks suppliers using the assignment-mandated PPI-first tie-breaking rules.
+- **Evaluation history:** Persists completed runs and supplier results in SQLite.
+- **Interactive dashboard:** Displays leaderboards, supplier scorecards, supporting evidence, justifications, risks, and warnings.
+- **JSON export:** Downloads the complete evaluation run, including criteria, metadata, scores, assessments, and provenance.
+
+## Technology Stack
+
+| Component | Technology |
+|---|---|
+| Programming language | Python |
+| Frontend | Streamlit |
+| LLM | Google Gemini |
+| LLM integration | Google Gen AI SDK |
+| PDF extraction | pypdf |
+| Database | SQLite |
+| Data validation | Python validation and normalization |
+| Configuration | python-dotenv |
+| Testing | pytest, Streamlit AppTest |
+
+## Local Setup
+
+### 1. Clone the repository
+
+```powershell
+git clone https://github.com/rexdavid7/B3-IITM-Mini-Project.git
+cd B3-IITM-Mini-Project
+```
+
+### 2. Create a virtual environment
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
+```
+
+### 3. Install dependencies
+
+```powershell
 python -m pip install -r requirements.txt
 ```
 
-Put these settings in a project-root `.env` file for local development, or set them in the process environment:
+### 4. Configure Gemini API credentials
+
+Create a `.env` file in the project root:
 
 ```text
-GEMINI_API_KEY=your-real-key
+GEMINI_API_KEY=your-real-api-key
 GEMINI_MODEL=model-id-selected-in-ai-studio
 ```
 
-The project loads `.env` via `python-dotenv` with `override=False`, so values already set by the execution environment take precedence. `.env` is listed in `.gitignore`; never commit it. Run `python scripts/gemini_smoke_test.py` to make one minimal request when both settings are present and the key is not a recognizable placeholder. The command does not display the key.
+Obtain an API key through [Google AI Studio](https://aistudio.google.com/).
 
-Choose the model ID from Google AI Studio's model picker and check that it is enabled for the API key/account. Google AI Studio's **Get code** panel also shows the ID for the selected model. Model availability and quota can vary, so this project has no assumed default. `GEMINI_MODEL` may be changed without editing the code.
+Choose an available model ID from Google AI Studio and configure it through `GEMINI_MODEL`.
 
-Seed the criteria and run tests:
+The application uses `python-dotenv` with `override=False`, allowing existing environment variables to take precedence over `.env` values.
+
+**Security:** Never commit `.env`, API keys, or Streamlit secrets to GitHub. These files are excluded through `.gitignore`.
+
+### 5. Initialize the database and verify API connectivity
 
 ```powershell
 python scripts/seed_database.py
+python scripts/gemini_smoke_test.py
+```
+
+The smoke test makes one minimal Gemini API request and reports a sanitized success or failure message without displaying credentials.
+
+### 6. Run the application
+
+```powershell
 python -m pytest
 streamlit run app.py
 ```
 
-The local app opens at `http://localhost:8501`. On first start it creates the SQLite schema and inserts the five defaults without overwriting existing criteria settings. Supplier metadata validation errors appear only after clicking **Evaluate supplier batch**. The app reads Gemini credentials from Streamlit secrets first, then the environment (including the project `.env` loaded for local development). It never displays credentials.
+The application opens at:
 
-## Structure
+`http://localhost:8501`
 
-- `src/rfp_eval/scoring.py`: validation and deterministic formulas
-- `src/rfp_eval/database.py`: SQLite schema, criteria access, and run persistence
-- `src/rfp_eval/document_reader.py`: strict text extraction from uploaded PDFs
-- `src/rfp_eval/gemini_client.py`: official Google Gen AI SDK client
-- `src/rfp_eval/config.py`: safe project-local `.env` loading
-- `src/rfp_eval/validation.py`: LLM schema checks, normalization, and warnings
-- `src/rfp_eval/orchestrator.py`: supplier evaluation, batch ranking, and persistence
-- `app.py`: Streamlit presentation only; delegates extraction, evaluation, scoring and persistence to the service modules
-- `scripts/gemini_smoke_test.py`: one minimal API connectivity check; prints no secrets
-- `scripts/seed_database.py`: initializes the database and inserts five defaults without overwriting configuration
-- `scripts/generate_supplier_proposals.py`: regenerates the four synthetic proposal PDFs
-- `tests/`: deterministic, PDF, validation, persistence, and mocked Gemini tests
+On first start, the application initializes the SQLite schema and inserts the five default evaluation criteria without overwriting existing configurations.
 
-## Evaluation flow
+## Evaluation Criteria
 
-`EvaluationOrchestrator.evaluate_batch()` snapshots active criteria from SQLite, then processes each supplier independently: extract PDF text, request a Gemini JSON assessment, normalize and validate it, and prepare a scorecard. It benchmarks and ranks successful proposals as one batch and saves them under one run ID. Supplier-specific failures are returned under `errors`; an all-failed batch is not saved. Persisted supplier results contain criterion-level scores, weights, benchmarks, gaps, relative performance, evidence, justifications, risks, warnings, absolute score, PPI, and rank.
+The application uses five configurable criteria stored in SQLite.
 
-The Streamlit app displays active criteria, collects multiple proposal PDFs and supplier metadata, reports per-supplier failures without exposing raw exception details, and shows saved run leaderboards, scorecards, warnings, tie-break rules, and complete JSON downloads. Run-level details preserve failed supplier information for incomplete batches. Legacy SQLite databases are upgraded to add the run-details JSON column when initialized.
+| Criterion | Description | Weight | Maximum Score |
+|---|---|---:|---:|
+| Technical Capability | Technical fit, architecture, integrations, and scalability. | 30% | 10 |
+| Implementation Plan | Timeline, milestones, staffing, and delivery feasibility. | 20% | 10 |
+| Commercial Value | Pricing clarity, total cost, assumptions, and value for money. | 20% | 10 |
+| Security & Compliance | Security controls, certifications, privacy, and auditability. | 20% | 10 |
+| Support & Experience | Support model, relevant projects, and references. | 10% | 10 |
+| **Total** | | **100%** | |
 
-## Formulas
+Criteria can be configured through the application's database-backed evaluation criteria functionality.
 
-Weights are percentage points (30 means 30%) and active weights must total 100. Absolute weighted score is `10 * sum((score / max_score) * weight / 100)`, on a 0–10 scale. Criterion benchmark is the highest observed score; gap is `supplier score - benchmark`. Relative performance is `score / benchmark * 100`; when both are zero, it is defined as 100%. PPI is the active-weighted average of criterion relative-performance percentages (0–100).
+## Agentic Evaluation Workflow
 
-Ranking order (assignment-mandated): PPI descending, earlier ISO submission date, higher historical experience rating, and supplier name ascending. Absolute weighted score is displayed but is not a ranking key.
+The evaluation workflow is orchestrated through `EvaluationOrchestrator.evaluate_batch()`.
 
-Missing criterion assessments and nonnumeric scores are assigned zero only with explicit warnings; numeric out-of-range scores are clipped with warnings. Duplicate criterion IDs are rejected as ambiguous. A human should review warnings and evidence before relying on a supplier ranking.
+1. **Criteria retrieval:** Loads the currently active evaluation criteria from SQLite and snapshots them for the batch.
+2. **Document extraction:** Extracts proposal text from each uploaded supplier PDF.
+3. **AI assessment:** Sends the extracted proposal content and evaluation criteria to Gemini for structured assessment.
+4. **Response validation:** Validates the returned JSON structure, criterion IDs, supplier identity, and score values. Normalizes acceptable model variations and generates warnings for missing or invalid information.
+5. **Score calculation:** Calculates deterministic weighted scores and criterion-level performance metrics.
+6. **Peer benchmarking:** Compares each supplier against the highest observed score for every criterion across the batch.
+7. **Supplier ranking:** Calculates PPI and applies the assignment-mandated ranking rules.
+8. **Persistence:** Saves successful supplier assessments, evaluation metadata, and run details to SQLite under a unique run ID.
+9. **Presentation and export:** Displays results through Streamlit and provides a downloadable JSON representation of the complete run.
 
-The evaluation prompt scores requirement coverage, evidence quality, feasibility, and material gaps. It tells the model not to reward proposal length, to distinguish claims from substantiating evidence, and to reserve 10/10 for comprehensive coverage with credible evidence and no material unresolved gaps. All four demonstration proposals, supplier identities, references and associated claims are fictional synthetic data; the application labels this at the run level in results and JSON exports. The synthetic-data disclaimer is not a supplier risk or validation warning. JSON exports round calculated display values to four decimal places after the unrounded metrics have determined rank.
+Supplier-specific failures are recorded under `errors`. A failed supplier does not prevent other suppliers from being evaluated. An entirely failed batch is not saved as a completed run.
 
-## Smoke test limitations
+## Scoring Methodology
 
-Automated tests mock Gemini responses and do not make paid requests. The smoke-test script makes one small real API request only when a nonempty API key and model are configured; it reports success or a sanitized diagnostic, never the key. A successful smoke test confirms connectivity and model access at that moment; it does not validate proposal-scoring quality or guarantee future quota/availability.
+### Absolute Weighted Score
 
-## Synthetic proposal set
+The absolute weighted score is calculated on a scale of 0–10.
 
-`data/supplier_proposals/` contains four synthetic responses to the same Morrowfield University graduate-admissions procurement scenario. Regenerate them with `python scripts/generate_supplier_proposals.py`. The test metadata to enter in the Streamlit uploader is:
+`Absolute Score = 10 × Σ[(Criterion Score / Maximum Score) × (Weight / 100)]`
 
-| PDF | Supplier name | Submission date | Experience rating |
-| --- | --- | --- | ---: |
-| `apex_systems_proposal.pdf` | Apex Systems | 2026-10-20 | 8 |
-| `brightpath_tech_proposal.pdf` | BrightPath Tech | 2026-10-21 | 3 |
-| `nexaworks_proposal.pdf` | NexaWorks | 2026-10-22 | 7 |
-| `orbit_digital_proposal.pdf` | Orbit Digital | 2026-10-23 | 9 |
+### Criterion Benchmark
 
-Experience ratings are relative numeric demonstration metadata; higher indicates more relevant experience. The application accepts any finite numeric value and does not define a rating range, so use one consistent scale across suppliers. Required-field and format errors appear after clicking **Evaluate supplier batch**, not while entering supplier details.
+The benchmark for each criterion is the highest observed score among the evaluated suppliers.
 
-`data/rfp_run_fd1151d1f93b4edf9206c847315b98d0_corrected.json` is a corrected export of a completed historical run. Supplier labels and provenance were corrected from the submitted proposal documents; its LLM scores were preserved, not rescored.
+`Benchmark = Highest Supplier Score for the Criterion`
 
-`data/rfp_run_b2cb741cf63d4cd0ae5cdb8fed8c6d62_verified.json` is a presentation-rounded export of the next completed run, generated from its persisted SQLite result. It retains the run's supplier metadata and ranks.
+### Performance Gap
+
+`Gap = Supplier Score − Criterion Benchmark`
+
+A negative value indicates that the supplier scored below the best-performing supplier for that criterion.
+
+### Relative Performance
+
+`Relative Performance = (Supplier Score / Criterion Benchmark) × 100`
+
+When both supplier score and benchmark are zero, relative performance is defined as 100%.
+
+### Proposal Performance Index (PPI)
+
+PPI represents the weighted average of each supplier's relative performance across all active criteria.
+
+`PPI = Σ[(Relative Performance × Criterion Weight) / 100]`
+
+PPI is expressed as a percentage from 0 to 100.
+
+### Ranking Rules
+
+The assignment-mandated ranking order is:
+
+1. Higher PPI.
+2. Earlier submission date.
+3. Higher historical experience rating.
+4. Supplier name in ascending alphabetical order.
+
+**Important:** Absolute weighted score is displayed for reference but does not determine supplier ranking.
+
+The ranking calculations use unrounded values. Exported display metrics are rounded to four decimal places.
+
+## Latest Demonstration Run
+
+The following results are from the completed evaluation run generated on October 30, 2026.
+
+**Run ID:** `bf08c5a0356846fe833e5a17229c65bc`
+
+**Status:** COMPLETED
+
+**Suppliers evaluated:** 4
+
+**Evaluation errors:** 0
+
+### Leaderboard
+
+| Rank | Supplier | Absolute Score / 10 | PPI |
+|---:|---|---:|---:|
+| 1 | NexaWorks | 8.60 | 100.0000 |
+| 2 | Apex Systems | 7.40 | 86.0714 |
+| 3 | Orbit Digital | 6.30 | 73.8889 |
+| 4 | BrightPath Tech | 5.00 | 57.3413 |
+
+### Supplier Metadata
+
+The following metadata was used in the completed demonstration run.
+
+| Supplier | Submission Date | Experience Rating |
+|---|---|---:|
+| NexaWorks | 2026-10-03 | 4 |
+| Apex Systems | 2026-10-05 | 4 |
+| Orbit Digital | 2026-10-15 | 5 |
+| BrightPath Tech | 2026-09-21 | 5 |
+
+Experience ratings are numeric demonstration metadata. The application accepts finite numeric values and does not enforce a predefined rating scale. A consistent scale should be used when comparing suppliers.
+
+### Evaluation Observations
+
+- **NexaWorks:** Strongest overall proposal, with comprehensive technical architecture, detailed implementation planning, transparent commercial pricing, and a well-defined support model. Security claims and fictional references require independent verification.
+- **Apex Systems:** Architecture-focused proposal with detailed integration design and strong commercial clarity. Its shorter implementation timeline and on-call after-hours support are identified as limitations.
+- **Orbit Digital:** Offers competitive commercial pricing and an 18-week implementation plan. Technical integration details and long-term audit-retention procedures require further clarification.
+- **BrightPath Tech:** Lowest quoted three-year cost and fastest implementation schedule. However, it has significant security, compliance, integration, and support limitations.
+
+All supplier proposals, supplier identities, references, and associated claims are fictional synthetic demonstration data. The results demonstrate the evaluation workflow and must not be interpreted as real supplier assessments.
+
+## Response Validation and Error Handling
+
+The validation layer handles:
+
+- Malformed or incomplete JSON responses.
+- Missing criterion assessments.
+- Duplicate criterion IDs.
+- Invalid supplier identities.
+- Nonnumeric scores.
+- Scores outside configured ranges.
+- Recognizable supplier name variations.
+- Supplier-specific processing failures.
+
+Missing criterion assessments and nonnumeric scores are assigned zero only with explicit warnings. Numeric out-of-range scores are clipped with warnings.
+
+Validation warnings and supplier risks are maintained separately. The synthetic-data disclaimer is recorded as run-level provenance rather than a supplier risk or validation warning.
+
+Human review of evidence, warnings, and supplier risks is recommended before relying on the resulting ranking.
+
+## Project Structure
+
+```text
+B3-IITM-Mini-Project/
+│
+├── app.py
+├── requirements.txt
+├── pyproject.toml
+├── README.md
+├── .gitignore
+├── .gitattributes
+│
+├── data/
+│   ├── supplier_proposals/
+│   │   ├── apex_systems_proposal.pdf
+│   │   ├── brightpath_tech_proposal.pdf
+│   │   ├── nexaworks_proposal.pdf
+│   │   └── orbit_digital_proposal.pdf
+│   │
+│   └── rfp_run_53c1cd28921c44cdbb6de0f8dabbc5fc_cleaned.json
+│
+├── scripts/
+│   ├── gemini_smoke_test.py
+│   ├── generate_supplier_proposals.py
+│   └── seed_database.py
+│
+├── src/
+│   └── rfp_eval/
+│       ├── __init__.py
+│       ├── config.py
+│       ├── database.py
+│       ├── document_reader.py
+│       ├── gemini_client.py
+│       ├── orchestrator.py
+│       ├── scoring.py
+│       └── validation.py
+│
+└── tests/
+    ├── conftest.py
+    ├── test_app.py
+    ├── test_config.py
+    ├── test_database.py
+    ├── test_document_reader.py
+    ├── test_gemini_client.py
+    ├── test_orchestrator.py
+    ├── test_scoring.py
+    ├── test_supplier_proposals.py
+    └── test_validation.py
+```
+
+## Testing
+
+The project includes automated tests covering:
+
+- Configuration and environment-variable handling.
+- PDF text extraction.
+- Gemini client integration using mocked responses.
+- Structured response validation and normalization.
+- Deterministic scoring and PPI calculations.
+- Ranking and tie-breaking rules.
+- Batch orchestration.
+- SQLite persistence and retrieval.
+- Streamlit application behaviour.
+- Synthetic supplier proposal generation.
+
+Run the complete test suite:
+
+```powershell
+python -m pytest
+```
+
+The automated tests mock Gemini responses and do not make paid API requests. The separate smoke test performs a real API connectivity check.
+
+## Streamlit Cloud Deployment
+
+The application can be deployed using [Streamlit Community Cloud](https://share.streamlit.io/).
+
+Deployment procedure:
+
+1. Push the project repository to GitHub.
+2. Sign in to Streamlit Community Cloud using GitHub.
+3. Select **Create app**.
+4. Select the `B3-IITM-Mini-Project` repository.
+5. Select the `main` branch.
+6. Set `app.py` as the application entry point.
+7. Configure the application secrets.
+
+Add the following to the Streamlit Cloud Secrets configuration:
+
+```toml
+GEMINI_API_KEY = "your-real-api-key"
+GEMINI_MODEL = "model-id-selected-in-ai-studio"
+```
+
+8. Deploy the application.
+
+The application reads credentials from Streamlit secrets first, followed by environment variables.
+
+**Database limitation:** The application uses SQLite for local persistence. Streamlit Community Cloud does not guarantee persistence of local application files across restarts or redeployments. SQLite is suitable for the classroom demonstration, but a production deployment requiring durable evaluation history should use an external persistent database.
+
+## Limitations
+
+- Gemini-generated assessments depend on the quality and completeness of extracted PDF text.
+- LLM assessments can contain interpretation errors and require human review.
+- API availability, model access, and usage quotas depend on the Google AI Studio account and selected model.
+- Automated tests use mocked LLM responses and do not independently establish assessment quality.
+- Supplier benchmarking is relative to the suppliers in the same evaluation batch.
+- Synthetic demonstration proposals and associated claims are fictional.
+- SQLite persistence on Streamlit Community Cloud is not guaranteed.
+
+## Disclaimer
+
+This project was developed as an academic mini-project to demonstrate agentic workflows, LLM integration, document processing, deterministic evaluation, and supplier ranking.
+
+All demonstration supplier identities, proposals, references, and associated claims are fictional. The application is a demonstration of an AI-assisted procurement evaluation workflow and is not a substitute for formal procurement due diligence or human decision-making.
