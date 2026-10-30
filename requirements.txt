@@ -1,2 +1,5 @@
+# Install the project and its runtime dependencies from pyproject.toml
 -e .
+
+# Development and testing
 pytest>=8.0,<10
