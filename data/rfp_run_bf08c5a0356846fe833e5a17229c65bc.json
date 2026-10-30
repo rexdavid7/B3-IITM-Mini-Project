@@ -1,0 +1,709 @@
+{
+  "rfp_run_id": "bf08c5a0356846fe833e5a17229c65bc",
+  "created_at": "2026-10-30T13:01:42.337274+00:00",
+  "status": "COMPLETED",
+  "tie_break_rule": "Rank by PPI, highest first; then earlier submission date; then higher historical experience rating; then supplier name in ascending order. Absolute weighted score is displayed but does not determine ranking.",
+  "criteria_snapshot": [
+    {
+      "criterion_id": 1,
+      "name": "Technical Capability",
+      "description": "Technical fit, architecture, integrations, and scalability.",
+      "weight": 30.0,
+      "max_score": 10.0,
+      "is_active": 1
+    },
+    {
+      "criterion_id": 2,
+      "name": "Implementation Plan",
+      "description": "Timeline, milestones, staffing, and delivery feasibility.",
+      "weight": 20.0,
+      "max_score": 10.0,
+      "is_active": 1
+    },
+    {
+      "criterion_id": 3,
+      "name": "Commercial Value",
+      "description": "Pricing clarity, total cost, assumptions, and value for money.",
+      "weight": 20.0,
+      "max_score": 10.0,
+      "is_active": 1
+    },
+    {
+      "criterion_id": 4,
+      "name": "Security & Compliance",
+      "description": "Security controls, certifications, privacy, and auditability.",
+      "weight": 20.0,
+      "max_score": 10.0,
+      "is_active": 1
+    },
+    {
+      "criterion_id": 5,
+      "name": "Support & Experience",
+      "description": "Support model, relevant projects, and references.",
+      "weight": 10.0,
+      "max_score": 10.0,
+      "is_active": 1
+    }
+  ],
+  "data_provenance": {
+    "synthetic": true,
+    "note": "All four supplier proposals, supplier identities, references and associated claims are fictional synthetic demonstration data."
+  },
+  "errors": [],
+  "suppliers": [
+    {
+      "supplier_name": "NexaWorks",
+      "submission_date": "2026-10-03",
+      "experience_rating": 4.0,
+      "scores": {
+        "1": 9.0,
+        "2": 9.0,
+        "3": 9.0,
+        "4": 8.0,
+        "5": 7.0
+      },
+      "assessment": {
+        "supplier_name": "NexaWorks",
+        "criteria": [
+          {
+            "criterion_id": 1,
+            "name": "Technical Capability",
+            "weight": 30.0,
+            "score": 9.0,
+            "max_score": 10.0,
+            "justification": "NexaWorks provides a detailed technical architecture separating the applicant portal, case workflow, document service, and integration gateway. It covers all four required interfaces (Banner via versioned REST adapter, Entra via SAML/SCIM, Exchange Online via Microsoft Graph, and Box) and addresses scalability with verified counts, checksums, and a peak-load rehearsal at 1,200 concurrent users.",
+            "evidence": "The design separates the applicant portal, case workflow, document service, and integration gateway. Banner is connected through a versioned REST adapter... Entra uses SAML and SCIM; Exchange Online sends templated decisions through Microsoft Graph; Box stores or references retained documents..."
+          },
+          {
+            "criterion_id": 2,
+            "name": "Implementation Plan",
+            "weight": 20.0,
+            "score": 9.0,
+            "max_score": 10.0,
+            "justification": "The proposal offers a clear, structured 22-week implementation plan with explicit milestones ranging from mobilization to cutover and a two-week hypercare period. Staffing allocations and explicit dependencies are clearly detailed.",
+            "evidence": "NexaWorks proposes a managed, modular admissions platform with a balanced fixed-price implementation and an explicit 22-week delivery plan... Weeks 1-2 Mobilize and discover... Weeks 20-22 Cutover and transition."
+          },
+          {
+            "criterion_id": 3,
+            "name": "Commercial Value",
+            "weight": 20.0,
+            "score": 9.0,
+            "max_score": 10.0,
+            "justification": "The commercial proposal provides clear cost elements including a one-time implementation fee of $104,000 and a managed subscription of $88,000 per year, yielding a three-year total cost of ownership of $368,000. Assumptions and exclusions are explicitly stated.",
+            "evidence": "Implementation, migration, and four interfaces: $104,000 (One-time). Managed subscription and enhanced support: $88,000 (Per year). Three-year total cost of ownership: $368,000 ($104,000 + 3 x $88,000)."
+          },
+          {
+            "criterion_id": 4,
+            "name": "Security & Compliance",
+            "weight": 20.0,
+            "score": 8.0,
+            "max_score": 10.0,
+            "justification": "Comprehensive security controls are outlined, including TLS 1.2+, AES-256 at rest, customer-managed key rotation, Entra SSO/MFA, SCIM deprovisioning, 7-year searchable audit retention, a SOC 2 Type II report, annual independent penetration testing, 24-hour incident notification, and US data residency. However, the proposal notes these are synthetic claims requiring document and scope verification.",
+            "evidence": "The fictional evidence pack describes TLS 1.2+, AES-256 at rest, customer-managed key rotation, Entra SSO/MFA, SCIM deprovisioning, quarterly role recertification, and seven-year searchable audit retention with export."
+          },
+          {
+            "criterion_id": 5,
+            "name": "Support & Experience",
+            "weight": 10.0,
+            "score": 7.0,
+            "max_score": 10.0,
+            "justification": "The support model includes enhanced 24x7 P1 intake, a 15-minute P1 acknowledgement target, 1-hour P2 acknowledgement, a named service manager, and a 99.9% monthly availability target. References are provided, but the proposal explicitly states that the two listed references use reserved `.invalid` domains and are fictional.",
+            "evidence": "Enhanced support provides 24x7 P1 intake, a 15-minute P1 acknowledgement target, one-hour P2 acknowledgement, and a named service manager. Two fictional references are listed: Cedar Point Institute... and Larkspur School of Public Policy... using reserved `.invalid` domains and are fictional."
+          }
+        ],
+        "risks": [
+          "Banner sandbox and representative records must be available by week 2 to protect the 22-week plan.",
+          "Divisional decision owners must attend UAT in weeks 16-19; delayed sign-off moves cutover."
+        ],
+        "overall_summary": "NexaWorks presents a comprehensive, modular proposal for Morrowfield University's graduate admissions case management requirements within a 22-week delivery window. The proposal details clear technical architecture, complete interface coverage, a structured implementation schedule with defined staffing, and a transparent three-year cost of ownership of $368,000. Security controls and support parameters are well-articulated, though all elements carry the explicit disclaimer of being synthetic demonstration data requiring independent verification.",
+        "warnings": [],
+        "data_provenance": {
+          "synthetic": true,
+          "note": "The proposal identifies its supplier, references, and claims as fictional synthetic demonstration data."
+        }
+      },
+      "absolute_score": 8.6,
+      "benchmarks": {
+        "1": 9.0,
+        "2": 9.0,
+        "3": 9.0,
+        "4": 8.0,
+        "5": 7.0
+      },
+      "gaps": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      },
+      "relative_performance": {
+        "1": 100.0,
+        "2": 100.0,
+        "3": 100.0,
+        "4": 100.0,
+        "5": 100.0
+      },
+      "ppi": 100.0,
+      "final_rank": 1,
+      "criterion_results": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "score": 9.0,
+          "max_score": 10.0,
+          "justification": "NexaWorks provides a detailed technical architecture separating the applicant portal, case workflow, document service, and integration gateway. It covers all four required interfaces (Banner via versioned REST adapter, Entra via SAML/SCIM, Exchange Online via Microsoft Graph, and Box) and addresses scalability with verified counts, checksums, and a peak-load rehearsal at 1,200 concurrent users.",
+          "evidence": "The design separates the applicant portal, case workflow, document service, and integration gateway. Banner is connected through a versioned REST adapter... Entra uses SAML and SCIM; Exchange Online sends templated decisions through Microsoft Graph; Box stores or references retained documents...",
+          "benchmark": 9.0,
+          "gap": 0.0,
+          "relative_performance": 100.0
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "score": 9.0,
+          "max_score": 10.0,
+          "justification": "The proposal offers a clear, structured 22-week implementation plan with explicit milestones ranging from mobilization to cutover and a two-week hypercare period. Staffing allocations and explicit dependencies are clearly detailed.",
+          "evidence": "NexaWorks proposes a managed, modular admissions platform with a balanced fixed-price implementation and an explicit 22-week delivery plan... Weeks 1-2 Mobilize and discover... Weeks 20-22 Cutover and transition.",
+          "benchmark": 9.0,
+          "gap": 0.0,
+          "relative_performance": 100.0
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "score": 9.0,
+          "max_score": 10.0,
+          "justification": "The commercial proposal provides clear cost elements including a one-time implementation fee of $104,000 and a managed subscription of $88,000 per year, yielding a three-year total cost of ownership of $368,000. Assumptions and exclusions are explicitly stated.",
+          "evidence": "Implementation, migration, and four interfaces: $104,000 (One-time). Managed subscription and enhanced support: $88,000 (Per year). Three-year total cost of ownership: $368,000 ($104,000 + 3 x $88,000).",
+          "benchmark": 9.0,
+          "gap": 0.0,
+          "relative_performance": 100.0
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "score": 8.0,
+          "max_score": 10.0,
+          "justification": "Comprehensive security controls are outlined, including TLS 1.2+, AES-256 at rest, customer-managed key rotation, Entra SSO/MFA, SCIM deprovisioning, 7-year searchable audit retention, a SOC 2 Type II report, annual independent penetration testing, 24-hour incident notification, and US data residency. However, the proposal notes these are synthetic claims requiring document and scope verification.",
+          "evidence": "The fictional evidence pack describes TLS 1.2+, AES-256 at rest, customer-managed key rotation, Entra SSO/MFA, SCIM deprovisioning, quarterly role recertification, and seven-year searchable audit retention with export.",
+          "benchmark": 8.0,
+          "gap": 0.0,
+          "relative_performance": 100.0
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "score": 7.0,
+          "max_score": 10.0,
+          "justification": "The support model includes enhanced 24x7 P1 intake, a 15-minute P1 acknowledgement target, 1-hour P2 acknowledgement, a named service manager, and a 99.9% monthly availability target. References are provided, but the proposal explicitly states that the two listed references use reserved `.invalid` domains and are fictional.",
+          "evidence": "Enhanced support provides 24x7 P1 intake, a 15-minute P1 acknowledgement target, one-hour P2 acknowledgement, and a named service manager. Two fictional references are listed: Cedar Point Institute... and Larkspur School of Public Policy... using reserved `.invalid` domains and are fictional.",
+          "benchmark": 7.0,
+          "gap": 0.0,
+          "relative_performance": 100.0
+        }
+      ],
+      "warnings": [],
+      "risks": [
+        "Banner sandbox and representative records must be available by week 2 to protect the 22-week plan.",
+        "Divisional decision owners must attend UAT in weeks 16-19; delayed sign-off moves cutover."
+      ],
+      "overall_summary": "NexaWorks presents a comprehensive, modular proposal for Morrowfield University's graduate admissions case management requirements within a 22-week delivery window. The proposal details clear technical architecture, complete interface coverage, a structured implementation schedule with defined staffing, and a transparent three-year cost of ownership of $368,000. Security controls and support parameters are well-articulated, though all elements carry the explicit disclaimer of being synthetic demonstration data requiring independent verification."
+    },
+    {
+      "supplier_name": "Apex Systems",
+      "submission_date": "2026-10-05",
+      "experience_rating": 4.0,
+      "scores": {
+        "1": 8.0,
+        "2": 7.0,
+        "3": 8.0,
+        "4": 7.0,
+        "5": 6.0
+      },
+      "assessment": {
+        "supplier_name": "Apex Systems",
+        "criteria": [
+          {
+            "criterion_id": 1,
+            "name": "Technical Capability",
+            "weight": 30.0,
+            "score": 8.0,
+            "max_score": 10.0,
+            "justification": "Apex proposes a detailed technical architecture with a single-tenant managed admissions workspace, relational case store, object storage, and asynchronous integration workers to handle peak load. They provide specific details on adapter design, idempotency keys, retry handling, reconciliation reports, and 12 named data mappings. The minor gap relates to reliance on university-provided credentials and test tenants.",
+            "evidence": "Apex proposes a single-tenant, managed admissions workspace with a relational case store, object storage for documents, and asynchronous integration workers."
+          },
+          {
+            "criterion_id": 2,
+            "name": "Implementation Plan",
+            "weight": 20.0,
+            "score": 7.0,
+            "max_score": 10.0,
+            "justification": "The supplier outlines a 20-week schedule with specific phase milestones, exit evidence, and a defined delivery team totaling 6.2 FTEs. However, the proposed 20-week timeline differs from the university's requested 26-week delivery window, and the schedule depends heavily on timely university decisions and access.",
+            "evidence": "Weeks 1-2 Discovery and tenant readiness; Weeks 3-6 Architecture and configuration; Weeks 7-12 Build and interfaces; Weeks 13-16 Migration and UAT; Weeks 17-20 Cutover and hypercare."
+          },
+          {
+            "criterion_id": 3,
+            "name": "Commercial Value",
+            "weight": 20.0,
+            "score": 8.0,
+            "max_score": 10.0,
+            "justification": "The commercial proposal provides clear cost elements including a $186,000 implementation fee and a $114,000 annual subscription, leading to a three-year TCO of $528,000. It explicitly lists inclusions such as four interfaces and migration, as well as exclusions like taxes, a fifth interface, and custom document remediation.",
+            "evidence": "Implementation, migration, and four interfaces: $186,000. Managed subscription and standard support: $114,000 per year. Three-year total cost of ownership: $528,000."
+          },
+          {
+            "criterion_id": 4,
+            "name": "Security & Compliance",
+            "weight": 20.0,
+            "score": 7.0,
+            "max_score": 10.0,
+            "justification": "Apex outlines strong security controls including TLS 1.2+, AES-256 encryption at rest, Entra MFA/SCIM, quarterly privileged-access reviews, and immutable audit logs. They mention a fictional SOC 2 Type II report and a penetration test, though the proposal notes these are demonstration claims requiring independent verification.",
+            "evidence": "The synthetic control package states TLS 1.2+ in transit, AES-256 encryption at rest with managed key rotation, Entra MFA/SCIM, quarterly privileged-access review, and immutable administrator and decision logs."
+          },
+          {
+            "criterion_id": 5,
+            "name": "Support & Experience",
+            "weight": 10.0,
+            "score": 6.0,
+            "max_score": 10.0,
+            "justification": "Standard support is detailed with 08:00-18:00 Eastern coverage on business days, 30-minute P1 acknowledgement, and on-call after-hours support. Relevant project experience and references are cited (Westbridge College and South Quay Institute), but the proposal explicitly states that references use reserved `.invalid` domains and are synthetic.",
+            "evidence": "Standard support is staffed 08:00-18:00 Eastern on business days, with a 30-minute acknowledgement target for P1 incidents and a four-hour workaround target."
+          }
+        ],
+        "risks": [
+          "The 20-week plan leaves six weeks of schedule reserve, but API approvals are on the critical path.",
+          "Seven-year retention depends on a customer-managed archive export being monitored by Morrowfield.",
+          "Subscription assumes annual prepayment and no more than 20% annual growth in stored documents.",
+          "After-hours P1 coverage is on-call, not a continuously staffed desk.",
+          "Exclusions include taxes, a fifth interface, custom document remediation, and more than 10 days of post-launch hypercare."
+        ],
+        "overall_summary": "Apex Systems provides a comprehensive, architecture-forward proposal featuring a single-tenant managed workspace, queue-based adapters with error handling, and a clear three-year TCO of $528,000. While technical capabilities and commercial clarity are strong, the proposed 20-week implementation schedule is shorter than the university's target window, and support outside of business hours relies on an on-call model rather than a 24/7 desk. Security controls are well-documented but rely on synthetic compliance reports that require independent verification.",
+        "warnings": []
+      },
+      "absolute_score": 7.4,
+      "benchmarks": {
+        "1": 9.0,
+        "2": 9.0,
+        "3": 9.0,
+        "4": 8.0,
+        "5": 7.0
+      },
+      "gaps": {
+        "1": -1.0,
+        "2": -2.0,
+        "3": -1.0,
+        "4": -1.0,
+        "5": -1.0
+      },
+      "relative_performance": {
+        "1": 88.8889,
+        "2": 77.7778,
+        "3": 88.8889,
+        "4": 87.5,
+        "5": 85.7143
+      },
+      "ppi": 86.0714,
+      "final_rank": 2,
+      "criterion_results": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "score": 8.0,
+          "max_score": 10.0,
+          "justification": "Apex proposes a detailed technical architecture with a single-tenant managed admissions workspace, relational case store, object storage, and asynchronous integration workers to handle peak load. They provide specific details on adapter design, idempotency keys, retry handling, reconciliation reports, and 12 named data mappings. The minor gap relates to reliance on university-provided credentials and test tenants.",
+          "evidence": "Apex proposes a single-tenant, managed admissions workspace with a relational case store, object storage for documents, and asynchronous integration workers.",
+          "benchmark": 9.0,
+          "gap": -1.0,
+          "relative_performance": 88.8889
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "score": 7.0,
+          "max_score": 10.0,
+          "justification": "The supplier outlines a 20-week schedule with specific phase milestones, exit evidence, and a defined delivery team totaling 6.2 FTEs. However, the proposed 20-week timeline differs from the university's requested 26-week delivery window, and the schedule depends heavily on timely university decisions and access.",
+          "evidence": "Weeks 1-2 Discovery and tenant readiness; Weeks 3-6 Architecture and configuration; Weeks 7-12 Build and interfaces; Weeks 13-16 Migration and UAT; Weeks 17-20 Cutover and hypercare.",
+          "benchmark": 9.0,
+          "gap": -2.0,
+          "relative_performance": 77.7778
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "score": 8.0,
+          "max_score": 10.0,
+          "justification": "The commercial proposal provides clear cost elements including a $186,000 implementation fee and a $114,000 annual subscription, leading to a three-year TCO of $528,000. It explicitly lists inclusions such as four interfaces and migration, as well as exclusions like taxes, a fifth interface, and custom document remediation.",
+          "evidence": "Implementation, migration, and four interfaces: $186,000. Managed subscription and standard support: $114,000 per year. Three-year total cost of ownership: $528,000.",
+          "benchmark": 9.0,
+          "gap": -1.0,
+          "relative_performance": 88.8889
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "score": 7.0,
+          "max_score": 10.0,
+          "justification": "Apex outlines strong security controls including TLS 1.2+, AES-256 encryption at rest, Entra MFA/SCIM, quarterly privileged-access reviews, and immutable audit logs. They mention a fictional SOC 2 Type II report and a penetration test, though the proposal notes these are demonstration claims requiring independent verification.",
+          "evidence": "The synthetic control package states TLS 1.2+ in transit, AES-256 encryption at rest with managed key rotation, Entra MFA/SCIM, quarterly privileged-access review, and immutable administrator and decision logs.",
+          "benchmark": 8.0,
+          "gap": -1.0,
+          "relative_performance": 87.5
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "score": 6.0,
+          "max_score": 10.0,
+          "justification": "Standard support is detailed with 08:00-18:00 Eastern coverage on business days, 30-minute P1 acknowledgement, and on-call after-hours support. Relevant project experience and references are cited (Westbridge College and South Quay Institute), but the proposal explicitly states that references use reserved `.invalid` domains and are synthetic.",
+          "evidence": "Standard support is staffed 08:00-18:00 Eastern on business days, with a 30-minute acknowledgement target for P1 incidents and a four-hour workaround target.",
+          "benchmark": 7.0,
+          "gap": -1.0,
+          "relative_performance": 85.7143
+        }
+      ],
+      "warnings": [],
+      "risks": [
+        "The 20-week plan leaves six weeks of schedule reserve, but API approvals are on the critical path.",
+        "Seven-year retention depends on a customer-managed archive export being monitored by Morrowfield.",
+        "Subscription assumes annual prepayment and no more than 20% annual growth in stored documents.",
+        "After-hours P1 coverage is on-call, not a continuously staffed desk.",
+        "Exclusions include taxes, a fifth interface, custom document remediation, and more than 10 days of post-launch hypercare."
+      ],
+      "overall_summary": "Apex Systems provides a comprehensive, architecture-forward proposal featuring a single-tenant managed workspace, queue-based adapters with error handling, and a clear three-year TCO of $528,000. While technical capabilities and commercial clarity are strong, the proposed 20-week implementation schedule is shorter than the university's target window, and support outside of business hours relies on an on-call model rather than a 24/7 desk. Security controls are well-documented but rely on synthetic compliance reports that require independent verification."
+    },
+    {
+      "supplier_name": "Orbit Digital",
+      "submission_date": "2026-10-15",
+      "experience_rating": 5.0,
+      "scores": {
+        "1": 6.0,
+        "2": 6.0,
+        "3": 7.0,
+        "4": 6.0,
+        "5": 7.0
+      },
+      "assessment": {
+        "supplier_name": "Orbit Digital",
+        "criteria": [
+          {
+            "criterion_id": 1,
+            "name": "Technical Capability",
+            "weight": 30.0,
+            "score": 6.0,
+            "max_score": 10.0,
+            "justification": "Orbit proposes a hosted case-management service with a configurable connector framework to connect Banner, Entra, Exchange Online, and Box. However, it lacks component diagrams, interface sequences, sample field maps, retry/idempotency policies, and named adapter owners, making integration design heavily dependent on post-award discovery.",
+            "evidence": "The platform is described as a hosted case-management service with a configurable connector framework. Orbit expects to connect Banner, Entra, Exchange Online, and Box through REST or vendor-supported interfaces. The proposal does not attach a component diagram, interface sequence, sample field map, retry/idempotency policy, or named adapter owner."
+          },
+          {
+            "criterion_id": 2,
+            "name": "Implementation Plan",
+            "weight": 20.0,
+            "score": 6.0,
+            "max_score": 10.0,
+            "justification": "The proposal outlines an 18-week delivery timeline across discovery, workflow configuration, connector workstreams, migration/testing, and training/launch, staffed by a 4.5 FTE team. However, the plan depends heavily on early clarification of integration complexity, and interface estimates may be revised after sandbox access.",
+            "evidence": "The delivery outline targets an 18-week launch, but the integration design and dependencies are intentionally less specific than the other responses and require discovery before the schedule can be treated as firm."
+          },
+          {
+            "criterion_id": 3,
+            "name": "Commercial Value",
+            "weight": 20.0,
+            "score": 7.0,
+            "max_score": 10.0,
+            "justification": "The commercial proposal provides clear pricing including $92,000 for implementation, migration, and four workstreams, $96,300 per year for hosting and standard support, totaling $380,900 for three years. Assumptions and exclusions are stated, but unit rates for change requests exceeding 10% interface estimate changes are not provided.",
+            "evidence": "Implementation, migration, and four workstreams: $92,000. Hosted subscription and standard support: $96,300 per year. Three-year total cost of ownership: $380,900."
+          },
+          {
+            "criterion_id": 4,
+            "name": "Security & Compliance",
+            "weight": 20.0,
+            "score": 6.0,
+            "max_score": 10.0,
+            "justification": "Orbit confirms TLS 1.2+, AES-256 at rest, SAML SSO, configurable MFA, role-based access, US hosting, annual penetration testing, and a 24-hour incident notification target. Gaps include online audit log retention limited to three years without a specified seven-year operating procedure, an omitted penetration-test summary, and recovery objectives of RPO 4 hours and RTO 8 hours.",
+            "evidence": "Audit logs are retained online for three years, with export available for university archiving; the export frequency and seven-year operating procedure are not specified. Recovery objectives are listed as RPO 4 hours and RTO 8 hours."
+          },
+          {
+            "criterion_id": 5,
+            "name": "Support & Experience",
+            "weight": 10.0,
+            "score": 7.0,
+            "max_score": 10.0,
+            "justification": "Orbit offers weekday support from 08:00-18:00 Eastern with an on-call P1 route and a one-hour acknowledgement target, though no 24x7 desk or service-credit schedule is priced. It cites nine fictional higher-education launches including Bluevale Polytechnic, Redfern University, and North Coast Arts College.",
+            "evidence": "Orbit provides weekday support from 08:00-18:00 Eastern, with an on-call P1 route and a one-hour acknowledgement target; no 24x7 staffed desk or service-credit schedule is priced. Orbit cites nine fictional higher-education launches..."
+          }
+        ],
+        "risks": [
+          "The 18-week target is conditional on four interface designs being agreed by week 2; no detailed maps are attached.",
+          "Three-year audit export and retention operations need a named owner and a tested schedule.",
+          "The 8-hour RTO and 4-hour RPO are weaker than the other offers and need business-owner review."
+        ],
+        "overall_summary": "Orbit Digital presents a mid-range proposal featuring a hosted case-management product and an 18-week delivery plan. While commercial pricing and general functional coverage are clearly laid out, the technical integration approach lacks detailed specifications, depending heavily on post-award discovery. Security and support offerings meet baseline needs but include weaker recovery objectives (RPO 4 hours, RTO 8 hours) and incomplete operational procedures for long-term audit retention.",
+        "warnings": []
+      },
+      "absolute_score": 6.3,
+      "benchmarks": {
+        "1": 9.0,
+        "2": 9.0,
+        "3": 9.0,
+        "4": 8.0,
+        "5": 7.0
+      },
+      "gaps": {
+        "1": -3.0,
+        "2": -3.0,
+        "3": -2.0,
+        "4": -2.0,
+        "5": 0.0
+      },
+      "relative_performance": {
+        "1": 66.6667,
+        "2": 66.6667,
+        "3": 77.7778,
+        "4": 75.0,
+        "5": 100.0
+      },
+      "ppi": 73.8889,
+      "final_rank": 3,
+      "criterion_results": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "score": 6.0,
+          "max_score": 10.0,
+          "justification": "Orbit proposes a hosted case-management service with a configurable connector framework to connect Banner, Entra, Exchange Online, and Box. However, it lacks component diagrams, interface sequences, sample field maps, retry/idempotency policies, and named adapter owners, making integration design heavily dependent on post-award discovery.",
+          "evidence": "The platform is described as a hosted case-management service with a configurable connector framework. Orbit expects to connect Banner, Entra, Exchange Online, and Box through REST or vendor-supported interfaces. The proposal does not attach a component diagram, interface sequence, sample field map, retry/idempotency policy, or named adapter owner.",
+          "benchmark": 9.0,
+          "gap": -3.0,
+          "relative_performance": 66.6667
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "score": 6.0,
+          "max_score": 10.0,
+          "justification": "The proposal outlines an 18-week delivery timeline across discovery, workflow configuration, connector workstreams, migration/testing, and training/launch, staffed by a 4.5 FTE team. However, the plan depends heavily on early clarification of integration complexity, and interface estimates may be revised after sandbox access.",
+          "evidence": "The delivery outline targets an 18-week launch, but the integration design and dependencies are intentionally less specific than the other responses and require discovery before the schedule can be treated as firm.",
+          "benchmark": 9.0,
+          "gap": -3.0,
+          "relative_performance": 66.6667
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "score": 7.0,
+          "max_score": 10.0,
+          "justification": "The commercial proposal provides clear pricing including $92,000 for implementation, migration, and four workstreams, $96,300 per year for hosting and standard support, totaling $380,900 for three years. Assumptions and exclusions are stated, but unit rates for change requests exceeding 10% interface estimate changes are not provided.",
+          "evidence": "Implementation, migration, and four workstreams: $92,000. Hosted subscription and standard support: $96,300 per year. Three-year total cost of ownership: $380,900.",
+          "benchmark": 9.0,
+          "gap": -2.0,
+          "relative_performance": 77.7778
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "score": 6.0,
+          "max_score": 10.0,
+          "justification": "Orbit confirms TLS 1.2+, AES-256 at rest, SAML SSO, configurable MFA, role-based access, US hosting, annual penetration testing, and a 24-hour incident notification target. Gaps include online audit log retention limited to three years without a specified seven-year operating procedure, an omitted penetration-test summary, and recovery objectives of RPO 4 hours and RTO 8 hours.",
+          "evidence": "Audit logs are retained online for three years, with export available for university archiving; the export frequency and seven-year operating procedure are not specified. Recovery objectives are listed as RPO 4 hours and RTO 8 hours.",
+          "benchmark": 8.0,
+          "gap": -2.0,
+          "relative_performance": 75.0
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "score": 7.0,
+          "max_score": 10.0,
+          "justification": "Orbit offers weekday support from 08:00-18:00 Eastern with an on-call P1 route and a one-hour acknowledgement target, though no 24x7 desk or service-credit schedule is priced. It cites nine fictional higher-education launches including Bluevale Polytechnic, Redfern University, and North Coast Arts College.",
+          "evidence": "Orbit provides weekday support from 08:00-18:00 Eastern, with an on-call P1 route and a one-hour acknowledgement target; no 24x7 staffed desk or service-credit schedule is priced. Orbit cites nine fictional higher-education launches...",
+          "benchmark": 7.0,
+          "gap": 0.0,
+          "relative_performance": 100.0
+        }
+      ],
+      "warnings": [],
+      "risks": [
+        "The 18-week target is conditional on four interface designs being agreed by week 2; no detailed maps are attached.",
+        "Three-year audit export and retention operations need a named owner and a tested schedule.",
+        "The 8-hour RTO and 4-hour RPO are weaker than the other offers and need business-owner review."
+      ],
+      "overall_summary": "Orbit Digital presents a mid-range proposal featuring a hosted case-management product and an 18-week delivery plan. While commercial pricing and general functional coverage are clearly laid out, the technical integration approach lacks detailed specifications, depending heavily on post-award discovery. Security and support offerings meet baseline needs but include weaker recovery objectives (RPO 4 hours, RTO 8 hours) and incomplete operational procedures for long-term audit retention."
+    },
+    {
+      "supplier_name": "BrightPath Tech",
+      "submission_date": "2026-09-21",
+      "experience_rating": 5.0,
+      "scores": {
+        "1": 5.0,
+        "2": 6.0,
+        "3": 7.0,
+        "4": 3.0,
+        "5": 3.0
+      },
+      "assessment": {
+        "supplier_name": "BrightPath Tech",
+        "criteria": [
+          {
+            "criterion_id": 1,
+            "name": "Technical Capability",
+            "weight": 30.0,
+            "score": 5.0,
+            "max_score": 10.0,
+            "justification": "The proposal offers a configurable hosted portal, standard admissions workflow, review queues, document checklist, decision email, and dashboard using a shared multi-tenant web service, relational database, and cloud file storage. However, it lacks a detailed throughput estimate for concurrent users and a field-level migration plan for documents, while integrations rely on configuration templates without API versions, field ownership, retry behavior, duplicate-event handling, or named integration engineers.",
+            "evidence": "The offer uses a shared multi-tenant web service with a relational database and cloud file storage. It lists Banner, Entra, Exchange, and Box as target interfaces and says configuration templates will be used where available. It does not identify API versions, field ownership, retry behavior, duplicate-event handling, or a named integration engineer."
+          },
+          {
+            "criterion_id": 2,
+            "name": "Implementation Plan",
+            "weight": 20.0,
+            "score": 6.0,
+            "max_score": 10.0,
+            "justification": "BrightPath proposes a fast 12-week schedule with structured milestones spanning kickoff, portal setup, template integrations, data load, user testing, training, and launch. It defines a small delivery team and dependencies, though dates depend on timely university decisions, and the shared integration pool and project coordinator lack dedicated full-time allocation or named integration engineers.",
+            "evidence": "Weeks 1-12 schedule provided across kickoff, portal and workflow setup, template integrations, data load, user test, and training and launch, utilizing a delivery team comprising a 0.5 FTE project coordinator, 1.0 FTE configuration specialist, 0.5 FTE shared integration pool, and 0.5 FTE QA/trainer."
+          },
+          {
+            "criterion_id": 3,
+            "name": "Commercial Value",
+            "weight": 20.0,
+            "score": 7.0,
+            "max_score": 10.0,
+            "justification": "The proposal outlines clear cost elements including $64,000 for implementation and standard connectors, $62,000 per year for hosted subscription and 8x5 support, totaling $250,000 for three years, representing the lowest quoted cost. It explicitly lists assumptions such as endpoints working with existing templates and university-led data cleansing, while identifying exclusions including taxes, after-hours support, historical document repair, and potential custom connectors at $12,000 each.",
+            "evidence": "Three-year total cost of ownership is $250,000 ($64,000 implementation + 3 x $62,000 annual hosted subscription). Custom connector is listed at $12,000 each, outside the total."
+          },
+          {
+            "criterion_id": 4,
+            "name": "Security & Compliance",
+            "weight": 20.0,
+            "score": 3.0,
+            "max_score": 10.0,
+            "justification": "BrightPath states HTTPS/TLS 1.2, cloud-provider encryption at rest, password MFA, and basic role-based permissions, and notes US hosting. However, it lacks current independent SOC 2 or ISO 27001 evidence, annual penetration test reports, documented quarterly access reviews, and detailed incident workflows, while application audit logs are retained online for only 13 months with a seven-year archive offered only as an unpriced future add-on.",
+            "evidence": "It has no current independent SOC 2 or ISO 27001 evidence in this synthetic submission. The proposal gives no annual penetration test report, no documented quarterly access review, and no detailed incident workflow. Application audit logs are retained online for 13 months; a seven-year archive option is described as a future add-on without a price or export schedule."
+          },
+          {
+            "criterion_id": 5,
+            "name": "Support & Experience",
+            "weight": 10.0,
+            "score": 3.0,
+            "max_score": 10.0,
+            "justification": "Support is limited to 08:00-17:00 Eastern on weekdays with a P1 acknowledgement target within two business hours, offering no after-hours P1 rota or contractual service credits. For experience, the supplier lists a fictional 2,400-application career-college pilot and a small internal admissions demo, lacking any comparable 18,000-application production reference, with contact details using synthetic .invalid domains.",
+            "evidence": "Support is 08:00-17:00 Eastern on weekdays. P1 acknowledgement is targeted within two business hours; no after-hours P1 rota or contractual service credit is offered. BrightPath lists one fictional 2,400-application career-college pilot and a small internal admissions demo, with no comparable 18,000-application production reference."
+          }
+        ],
+        "risks": [
+          "Fast launch assumes all four connections are template-compatible; custom connectors add cost and time.",
+          "The submitted retention, independent testing, and incident evidence do not yet meet the stated baseline.",
+          "Migration cleansing and load preparation sit with the university without a quantified effort estimate."
+        ],
+        "overall_summary": "BrightPath Tech proposes a configurable hosted portal and standard admissions workflow featuring the lowest quoted three-year total cost of ownership ($250,000) and a rapid 12-week schedule. While implementation milestones and commercial pricing are clearly stated, the proposal exhibits major gaps in security compliance—lacking independent certifications, penetration test reports, and the required seven-year audit retention without add-ons—as well as limited support hours (8x5 weekdays) and no comparable 18,000-application production references. Additionally, technical integration details and data migration responsibilities place significant dependencies on the university.",
+        "warnings": []
+      },
+      "absolute_score": 5.0,
+      "benchmarks": {
+        "1": 9.0,
+        "2": 9.0,
+        "3": 9.0,
+        "4": 8.0,
+        "5": 7.0
+      },
+      "gaps": {
+        "1": -4.0,
+        "2": -3.0,
+        "3": -2.0,
+        "4": -5.0,
+        "5": -4.0
+      },
+      "relative_performance": {
+        "1": 55.5556,
+        "2": 66.6667,
+        "3": 77.7778,
+        "4": 37.5,
+        "5": 42.8571
+      },
+      "ppi": 57.3413,
+      "final_rank": 4,
+      "criterion_results": [
+        {
+          "criterion_id": 1,
+          "name": "Technical Capability",
+          "weight": 30.0,
+          "score": 5.0,
+          "max_score": 10.0,
+          "justification": "The proposal offers a configurable hosted portal, standard admissions workflow, review queues, document checklist, decision email, and dashboard using a shared multi-tenant web service, relational database, and cloud file storage. However, it lacks a detailed throughput estimate for concurrent users and a field-level migration plan for documents, while integrations rely on configuration templates without API versions, field ownership, retry behavior, duplicate-event handling, or named integration engineers.",
+          "evidence": "The offer uses a shared multi-tenant web service with a relational database and cloud file storage. It lists Banner, Entra, Exchange, and Box as target interfaces and says configuration templates will be used where available. It does not identify API versions, field ownership, retry behavior, duplicate-event handling, or a named integration engineer.",
+          "benchmark": 9.0,
+          "gap": -4.0,
+          "relative_performance": 55.5556
+        },
+        {
+          "criterion_id": 2,
+          "name": "Implementation Plan",
+          "weight": 20.0,
+          "score": 6.0,
+          "max_score": 10.0,
+          "justification": "BrightPath proposes a fast 12-week schedule with structured milestones spanning kickoff, portal setup, template integrations, data load, user testing, training, and launch. It defines a small delivery team and dependencies, though dates depend on timely university decisions, and the shared integration pool and project coordinator lack dedicated full-time allocation or named integration engineers.",
+          "evidence": "Weeks 1-12 schedule provided across kickoff, portal and workflow setup, template integrations, data load, user test, and training and launch, utilizing a delivery team comprising a 0.5 FTE project coordinator, 1.0 FTE configuration specialist, 0.5 FTE shared integration pool, and 0.5 FTE QA/trainer.",
+          "benchmark": 9.0,
+          "gap": -3.0,
+          "relative_performance": 66.6667
+        },
+        {
+          "criterion_id": 3,
+          "name": "Commercial Value",
+          "weight": 20.0,
+          "score": 7.0,
+          "max_score": 10.0,
+          "justification": "The proposal outlines clear cost elements including $64,000 for implementation and standard connectors, $62,000 per year for hosted subscription and 8x5 support, totaling $250,000 for three years, representing the lowest quoted cost. It explicitly lists assumptions such as endpoints working with existing templates and university-led data cleansing, while identifying exclusions including taxes, after-hours support, historical document repair, and potential custom connectors at $12,000 each.",
+          "evidence": "Three-year total cost of ownership is $250,000 ($64,000 implementation + 3 x $62,000 annual hosted subscription). Custom connector is listed at $12,000 each, outside the total.",
+          "benchmark": 9.0,
+          "gap": -2.0,
+          "relative_performance": 77.7778
+        },
+        {
+          "criterion_id": 4,
+          "name": "Security & Compliance",
+          "weight": 20.0,
+          "score": 3.0,
+          "max_score": 10.0,
+          "justification": "BrightPath states HTTPS/TLS 1.2, cloud-provider encryption at rest, password MFA, and basic role-based permissions, and notes US hosting. However, it lacks current independent SOC 2 or ISO 27001 evidence, annual penetration test reports, documented quarterly access reviews, and detailed incident workflows, while application audit logs are retained online for only 13 months with a seven-year archive offered only as an unpriced future add-on.",
+          "evidence": "It has no current independent SOC 2 or ISO 27001 evidence in this synthetic submission. The proposal gives no annual penetration test report, no documented quarterly access review, and no detailed incident workflow. Application audit logs are retained online for 13 months; a seven-year archive option is described as a future add-on without a price or export schedule.",
+          "benchmark": 8.0,
+          "gap": -5.0,
+          "relative_performance": 37.5
+        },
+        {
+          "criterion_id": 5,
+          "name": "Support & Experience",
+          "weight": 10.0,
+          "score": 3.0,
+          "max_score": 10.0,
+          "justification": "Support is limited to 08:00-17:00 Eastern on weekdays with a P1 acknowledgement target within two business hours, offering no after-hours P1 rota or contractual service credits. For experience, the supplier lists a fictional 2,400-application career-college pilot and a small internal admissions demo, lacking any comparable 18,000-application production reference, with contact details using synthetic .invalid domains.",
+          "evidence": "Support is 08:00-17:00 Eastern on weekdays. P1 acknowledgement is targeted within two business hours; no after-hours P1 rota or contractual service credit is offered. BrightPath lists one fictional 2,400-application career-college pilot and a small internal admissions demo, with no comparable 18,000-application production reference.",
+          "benchmark": 7.0,
+          "gap": -4.0,
+          "relative_performance": 42.8571
+        }
+      ],
+      "warnings": [],
+      "risks": [
+        "Fast launch assumes all four connections are template-compatible; custom connectors add cost and time.",
+        "The submitted retention, independent testing, and incident evidence do not yet meet the stated baseline.",
+        "Migration cleansing and load preparation sit with the university without a quantified effort estimate."
+      ],
+      "overall_summary": "BrightPath Tech proposes a configurable hosted portal and standard admissions workflow featuring the lowest quoted three-year total cost of ownership ($250,000) and a rapid 12-week schedule. While implementation milestones and commercial pricing are clearly stated, the proposal exhibits major gaps in security compliance—lacking independent certifications, penetration test reports, and the required seven-year audit retention without add-ons—as well as limited support hours (8x5 weekdays) and no comparable 18,000-application production references. Additionally, technical integration details and data migration responsibilities place significant dependencies on the university."
+    }
+  ]
+}
